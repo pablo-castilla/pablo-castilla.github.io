@@ -226,18 +226,18 @@ For the *Terraria* players out there, here is one solution of each scenario.
 |Hallow      |Merchant, Nurse, Arms Dealer       |
 |Mushroom    |None                               |
 
-|Endgame  |Objective Value: 54                   |
-|Biome    |NPCs                                  |
-|:-------:|:------------------------------------:|
-|Forest   |Zoologist, Golfer, Party Girl         |
-|Cavern   |Clothier, Tavernkeep, Demolitionist   |
-|Desert   |Stylist, Cyborg, Steampunker          |
-|Ocean    |Angler, Pirate, Tax Collector         |
-|Snow     |Santa Claus, Goblin Tinkerer, Mechanic|
-|Jungle   |Witch Doctor, Dryad, Painter          |
-|Hallow   |Merchant, Wizard                      |
-|Mushroom |Guide, Princess, Truffle              |
-|Universal|Arms Dealer, Dye Trader, Nurse        |
+|Endgame           |Objective Value: 54                   |
+|Biome             |NPCs                                  |
+|:----------------:|:------------------------------------:|
+|Forest            |Zoologist, Golfer, Party Girl         |
+|Cavern            |Clothier, Tavernkeep, Demolitionist   |
+|Desert            |Stylist, Cyborg, Steampunker          |
+|Ocean             |Angler, Pirate, Tax Collector         |
+|Snow              |Santa Claus, Goblin Tinkerer, Mechanic|
+|Jungle            |Witch Doctor, Dryad, Painter          |
+|Hallow            |Merchant, Wizard                      |
+|Mushroom          |Guide, Princess, Truffle              |
+|Universal (Desert)|Arms Dealer, Dye Trader, Nurse        |
 
 
 ## Discussion and Future Directions
