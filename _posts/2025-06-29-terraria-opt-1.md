@@ -1,6 +1,6 @@
 ---
 title: 'Optimizing Terraria NPC Placements'
-date: 2025-06-26
+date: 2025-06-29
 permalink: /posts/2025/06/terraria-optimization-1/
 tags:
   - discrete optimization
