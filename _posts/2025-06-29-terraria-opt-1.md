@@ -199,9 +199,10 @@ I wrote two python programs, [one with the original nonlinear formulation](/_pos
 
 I ran each on two scenarios: all the NPCs and biomes the player can access in Pre-Hardmode (before defeating the [Wall of Flesh](https://terraria.wiki.gg/wiki/Wall_of_Flesh)) and the endgame where the player has access to every NPC and biome.
 
-Here are the results for each:
+The results for each are in the table below.
+The solution time is measured in work units, a deterministic unit of computation roughly equivalent to seconds of compute time.
 
-|Scenarios   |NPCs|Biomes|Nonlinear formulation time (work units)|Linear formulation time (work units)|
+|Scenarios   |NPCs|Biomes|Nonlinear Formulation Time (work units)|Linear Formulation Time (work units)|
 |:----------:|:--:|:----:|:-------------------------------------:|:----------------------------------:|
 |Pre-hardmode|18  |7     |0.05                                   |0.04                                |
 |Endgame     |26  |9     |2.93                                   |1.82                                |
