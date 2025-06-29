@@ -112,6 +112,12 @@ To add a new NPC group, let's add a new biome $$u$$ to the biome set $$B$$ that 
 This way, our current objective function accounts for the happiness scores of NPCs in the universal pylon group from their neighbors and we just have to add the happiness they get from their biome.
 
 To do so requires keeping track of which biome the universal pylon is in. I added binary decision variables $$x_{b}$$ for each $$b \in B \setminus \{u\}$$, where $$x_{b} = 1$$ if the universal pylon is in biome $$b$$ and 0 otherwise.
+The universal pylon exists in exactly one biome, so we add the constraint
+
+$$
+\sum_{b \in B \setminus \{u\}} x_{b} = 1.
+$$
+
 Each NPC $$n$$ in the universal pylon group then gets happiness $$\sum BP_{n,b} x_{b}$$ from its biome, so the total happiness the NPCs in the universal pylon group get from their biome is
 
 $$
@@ -119,13 +125,6 @@ $$
 $$
 
 Add this term to the objective function then updates it to account for the universal pylon group.
-
-We also must add one additional constraint: the universal pylon is in exactly one biome.
-
-$$
-\sum_{b \in B \setminus \{u\}} x_{b} = 1
-$$
-
 This gives us the integer program shown below.
 
 $$
@@ -146,7 +145,7 @@ $$
 ## Linearization
 Currently, our objective function is quadratic, which is slower to solve than if it were linear.
 While doing this project, I found a trick to linearize quadratic functions of binary variables.
-I decided to implement it and compare its performance in Gurobi versus the nonlinear case above.
+I decided to implement it and compare its performance in Gurobi versus the bilinear formulation above.
 
 For two decision variables $$x_1, x_2$$, the expression $$x_1 x_2$$ can be linearized by creating a new binary decision variable $$x_3$$ and adding the following constraints:
 
@@ -185,13 +184,13 @@ $$
 \sum_{n \in N} \sum_{b \in B \setminus u} BP_{n,b} x_{n,u,b}
 $$
 
-and we must add the constraints
+and we must add the three constraints below.
 
 $$
 \begin{align*}
 x_{n,u,b} &\geq x_{n,u} & \forall n \in N \\
 x_{n,u,b} &\geq x_{b} & \forall b \in B \setminus \{u\} \\
-x_{n,u,b} &\leq x_{n,u} + x_{b} - 1. & \forall n \in N, b \in B \setminus \{u\} \\
+x_{n,u,b} &\leq x_{n,u} + x_{b} - 1 & \forall n \in N, b \in B \setminus \{u\} \\
 \end{align*}
 $$
 
@@ -202,14 +201,44 @@ I ran each on two scenarios: all the NPCs and biomes the player can access in Pr
 
 Here are the results for each:
 
-| Scenarios    | NPCs | Biomes | Nonlinear     |Linear |
-|:------------:|:----:|:------:|:-------------:|:-----:|
-| Pre-hardmode | 18   | 7      | 0.05          | 0.04  |
-| Endgame      | 26   | 9      | 2.93          | 1.82  |
+|Scenarios   |NPCs|Biomes|Nonlinear formulation time (work units)|Linear formulation time (work units)|
+|:----------:|:--:|:----:|:-------------------------------------:|:----------------------------------:|
+|Pre-hardmode|18  |7     |0.05                                   |0.04                                |
+|Endgame     |26  |9     |2.93                                   |1.82                                |
 
 Surprise surprise, my linear reformulation is not as good as Gurobi!
 This really should not be a surprise; applying this trick was helpful for performance, Gurobi would be doing it already and better than my manual implementation.
 Also, the size of this problem is tiny in the context of discrete optimization, so take these with a grain of salt.
+
+And in terms of the number of optimal solutions, my code found 13 optimal solutions for the pre-hardmode scenario and 722 solutions for the endgame scenario.
+Note that the endgame scenario solutions are duplicated, as the NPCs in the universal pylon group could be swapped with the NPCs in appropriate biome, so there are more like 361 solutions.
+For the *Terraria* players out there, here is one solution of each scenario.
+
+|Pre-Hardmode|Objective Value: 35                |
+|Biome       |NPCs                               |
+|:----------:|:---------------------------------:|
+|Forest      |Guide, Zoologist, Golfer           |
+|Cavern      |Tavernkeep, Clothier, Demolitionist|
+|Desert      |Dye Trader                         |
+|Ocean       |Stylist, Angler, Party Girl        |
+|Snow        |Mechanic, Goblin Tinkerer          |
+|Jungle      |Witch Doctor, Dryad, Painter       |
+|Hallow      |Merchant, Nurse, Arms Dealer       |
+|Mushroom    |None                               |
+
+|Endgame  |Objective Value: 54                   |
+|Biome    |NPCs                                  |
+|:-------:|:------------------------------------:|
+|Forest   |Zoologist, Golfer, Party Girl         |
+|Cavern   |Clothier, Tavernkeep, Demolitionist   |
+|Desert   |Stylist, Cyborg, Steampunker          |
+|Ocean    |Angler, Pirate, Tax Collector         |
+|Snow     |Santa Claus, Goblin Tinkerer, Mechanic|
+|Jungle   |Witch Doctor, Dryad, Painter          |
+|Hallow   |Merchant, Wizard                      |
+|Mushroom |Guide, Princess, Truffle              |
+|Universal|Arms Dealer, Dye Trader, Nurse        |
+
 
 ## Discussion and Future Directions
 Since NPC's homes can be changed at no cost and only one NPC is used at a time, a hardcore penny-pincher could theoretically reorganize their NPCs to maximize the happiness of whichever NPC they need to buy items from at any particular moment.

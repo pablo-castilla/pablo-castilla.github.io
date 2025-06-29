@@ -118,6 +118,7 @@ BIOME_filter = [
     True, # Universal
 ]
 
+# (H) = Hardmode only
 NPC_filter = [
     True, # Guide
     True, # Merchant
@@ -126,27 +127,28 @@ NPC_filter = [
     True, # Clothier
     True, # Goblin Tinkerer
     True, # Demolitionist
-    True, # Steampunker
+    True, # Steampunker (H)
     True, # Arms Dealer
     True, # Dye Trader
     True, # Stylist
     True, # Angler
-    True, # Pirate
-    True, # Tax Collector
-    True, # Cyborg
+    True, # Pirate (H)
+    True, # Tax Collector (H)
+    True, # Cyborg (H)
     True, # Mechanic
     True, # Witch Doctor
     True, # Dryad
     True, # Painter
     True, # Nurse
     True, # Tavernkeep
-    True, # Wizard
+    True, # Wizard (H)
     True, # Party Girl
-    True, # Truffle
-    True, # Santa Claus
-    True, # Princess
+    True, # Truffle (H)
+    True, # Santa Claus (H)
+    True, # Princess (H)
 ]
 
+count_all_solns = False
 # ------------------------------------------------
 
 BIOME_NAMES = [name for i, name in enumerate(BIOME_NAMES) if BIOME_filter[i]]
@@ -210,6 +212,11 @@ if "Universal" in BIOME_NAMES:
 # optimize
 model.setObjective(objective, GRB.MAXIMIZE)
 
+if count_all_solns:
+    model.setParam(GRB.Param.PoolSolutions, 1024)
+    model.setParam(GRB.Param.PoolGap, 0)
+    model.setParam(GRB.Param.PoolSearchMode, 2)
+
 model.optimize()
 
 # results
@@ -223,3 +230,6 @@ for k,v in living_assignments.items():
 
 if "Universal" in BIOME_NAMES:
     print(f"Universal Pylon is in the {BIOME_NAMES[[k for k, v in u.items() if v.X == 1][0]]} biome.")
+
+if count_all_solns:
+    print(f"Number of solutions found: {model.SolCount}")
