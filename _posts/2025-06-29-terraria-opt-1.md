@@ -213,9 +213,12 @@ Also, the size of this problem is tiny in the context of discrete optimization, 
 
 And in terms of the number of optimal solutions, my code found 13 optimal solutions for the pre-hardmode scenario and 722 solutions for the endgame scenario.
 Note that the endgame scenario solutions are duplicated, as the NPCs in the universal pylon group could be swapped with the NPCs in appropriate biome, so there are more like 361 solutions.
-For the *Terraria* players out there, here is one solution of each scenario.
+Even so, I expected far fewer optimal solutions than 722, but remember there are $$9 \cdot \binom{26}{3, \dots, 3, 2} \approx 10^{21}$$ total arrangements!
 
-|Pre-Hardmode|Objective Value: 35                |
+And *Terraria* players, I won't leave you hanging.
+Here is one solution of each scenario.
+
+### Optimal Pre-Hardmode Solution (Objective Value: 35)
 |Biome       |NPCs                               |
 |:----------:|:---------------------------------:|
 |Forest      |Guide, Zoologist, Golfer           |
@@ -227,7 +230,7 @@ For the *Terraria* players out there, here is one solution of each scenario.
 |Hallow      |Merchant, Nurse, Arms Dealer       |
 |Mushroom    |None                               |
 
-|Endgame           |Objective Value: 54                   |
+### Optimal Endgame Solution (Objective Value: 54)
 |Biome             |NPCs                                  |
 |:----------------:|:------------------------------------:|
 |Forest            |Zoologist, Golfer, Party Girl         |
