@@ -113,9 +113,9 @@ BIOME_filter = [
     True, # Ocean
     True, # Snow
     True, # Jungle
-    True, # Hallow
+    False, # Hallow
     True, # Mushroom
-    True, # Universal
+    False, # Universal
 ]
 
 # (H) = Hardmode only
@@ -123,29 +123,29 @@ NPC_filter = [
     True, # Guide
     True, # Merchant
     True, # Zoologist
-    True, # Golfer
-    True, # Clothier
-    True, # Goblin Tinkerer
+    False, # Golfer
+    False, # Clothier
+    False, # Goblin Tinkerer
     True, # Demolitionist
-    True, # Steampunker (H)
-    True, # Arms Dealer
+    False, # Steampunker (H)
+    False, # Arms Dealer
     True, # Dye Trader
-    True, # Stylist
+    False, # Stylist
     True, # Angler
-    True, # Pirate (H)
-    True, # Tax Collector (H)
-    True, # Cyborg (H)
-    True, # Mechanic
-    True, # Witch Doctor
-    True, # Dryad
-    True, # Painter
+    False, # Pirate (H)
+    False, # Tax Collector (H)
+    False, # Cyborg (H)
+    False, # Mechanic
+    False, # Witch Doctor
+    False, # Dryad
+    False, # Painter
     True, # Nurse
-    True, # Tavernkeep
-    True, # Wizard (H)
-    True, # Party Girl
-    True, # Truffle (H)
-    True, # Santa Claus (H)
-    True, # Princess (H)
+    False, # Tavernkeep
+    False, # Wizard (H)
+    False, # Party Girl
+    False, # Truffle (H)
+    False, # Santa Claus (H)
+    False, # Princess (H)
 ]
 
 count_all_solns = False
