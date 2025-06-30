@@ -4,13 +4,13 @@
 
 /* Color codes used for the theme */
 $gray                       : #7a8288;
-$dark-gray                  : mix(#000, $gray, 40%); /* #313436 */
-$darker-gray                : mix(#000, $gray, 60%); /* #7a8288 */
+$dark-gray                  : mix(#000, $gray, 40%);
+$darker-gray                : mix(#000, $gray, 60%);
 $light-gray                 : #9ba1a6;
 $lighter-gray               : mix(#fff, $gray, 90%);
 
-$text                       : #1A1B1C;
-$text-light                 : #333537;
+$text                       : $darker-gray;
+$text-light                 : $gray;
 
 /* Color codes used for the site */
 $danger-color               : #ee5f5b;
