@@ -8,7 +8,7 @@ $dark-gray                  : mix(#000, $gray, 40%);
 $darker-gray                : mix(#000, $gray, 60%);
 $light-gray                 : mix(#fff, $gray, 50%);
 
-$background                 : #181a1b;
+$background                 : #1f1f1f;
 $background-light           : mix(#fff, $background, 80%);
 $background-lighter         : mix(#fff, $background, 90%);
 $text                       : #ffffff;
@@ -38,7 +38,7 @@ html[data-theme="dark"] {
     --global-base-color                 : #{$background};
     --global-bg-color                   : #{$background};
     --global-footer-bg-color            : #{$background};
-    --global-border-color               : #{$light-gray};
+    --global-border-color               : #{$gray};
     --global-dark-border-color          : #{$background-light};
     --global-code-background-color      : #fafafa;
     --global-code-text-color            : #{$darker-gray};
